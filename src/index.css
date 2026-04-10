@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Light Theme */
+  --bg-color: #f8f9fa;
+  --surface-color: #ffffff;
+  --text-primary: #000d2f;
+  --text-secondary: #444650;
+  --primary-color: #000d2f;
+  --primary-accent: #00205b;
+  --accent-gold: #e9c176;
+  --accent-gold-soft: #ffdea5;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --nav-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='dark'] {
+  --bg-color: #0a0b0e;
+  --surface-color: #12141a;
+  --text-primary: #f0f1f2;
+  --text-secondary: #a0a4b0;
+  --primary-color: #b2c5ff;
+  --primary-accent: #2d447f;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(10, 11, 14, 0.7);
+  --nav-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  transition: background-color var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .serif {
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+/* Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.executive-gradient {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-accent) 100%);
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-padding {
+  padding: 8rem 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 4rem 0;
+  }
+}
