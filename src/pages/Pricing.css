@@ -1,0 +1,171 @@
+/* ─── Pricing Page ────────────────────────────────────────────────────────── */
+
+.pricing-section { background: var(--bg); }
+
+/* Grid: 5 columns */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+/* Card */
+.pricing-card {
+  position: relative;
+  background: var(--surface);
+  padding: 2rem 1.5rem;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  transition: background 0.25s ease;
+}
+.pricing-card:last-child { border-right: none; }
+.pricing-card:hover { background: #fdfcfa; }
+
+/* Highlighted */
+.pricing-card--highlight {
+  background: var(--navy);
+  border-right-color: rgba(255,255,255,0.08);
+  z-index: 1;
+  box-shadow: 0 0 40px rgba(6,19,45,0.25);
+}
+.pricing-card--highlight:hover { background: var(--navy-mid); }
+
+/* Badge */
+.pricing-card__badge {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-gold);
+  color: var(--navy);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.9rem;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  white-space: nowrap;
+}
+
+/* Header */
+.pricing-card__header { margin-bottom: 1.25rem; padding-top: 0.75rem; }
+.pricing-card__name {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+.pricing-card--highlight .pricing-card__name { color: rgba(255,255,255,0.5); }
+
+.pricing-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+.pricing-card__amount {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+}
+.pricing-card--highlight .pricing-card__amount { color: #fff; }
+.pricing-card__period {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.pricing-card--highlight .pricing-card__period { color: rgba(255,255,255,0.45); }
+.pricing-card__desc {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.pricing-card--highlight .pricing-card__desc { color: rgba(255,255,255,0.5); }
+
+/* Divider */
+.pricing-card__divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 1.25rem;
+}
+.pricing-card--highlight .pricing-card__divider { background: rgba(255,255,255,0.1); }
+
+/* Features */
+.pricing-card__features {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+.pricing-card__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+.pricing-card--highlight .pricing-card__feature { color: rgba(255,255,255,0.65); }
+.pricing-card__check {
+  color: var(--accent-gold);
+  font-weight: 700;
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  margin-top: 1px;
+}
+
+/* CTA */
+.pricing-card__cta {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.68rem;
+  padding: 0.75rem 1rem;
+}
+
+/* Infrastructure Cards */
+.infra-card__img-wrap {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.infra-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.infra-card:hover .infra-card__img { transform: scale(1.04); }
+.infra-card__body { padding: 1.5rem; }
+.infra-card__icon {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--accent-gold);
+  margin-bottom: 0.75rem;
+}
+.infra-card__title {
+  color: var(--navy);
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+.infra-card__desc { font-size: 0.85rem; line-height: 1.65; }
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+  .pricing-card { border-bottom: 1px solid var(--border); border-right: none; }
+  .pricing-card:nth-child(3n) { border-right: none; }
+}
+@media (max-width: 700px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card { border-right: none; }
+}

@@ -1,99 +1,202 @@
-// src/pages/Home.tsx
 import { Link } from 'react-router-dom';
-import heroImg from '../assets/hero.png';
-import meetingImg from '../assets/meeting.png';
+import './Home.css';
+
+const services = [
+  { icon: '◈', title: 'Accounting', desc: 'Rigorous financial record management and reporting for institutional clarity.' },
+  { icon: '◉', title: 'Payroll', desc: 'Seamless payroll operations ensuring precision, compliance, and confidentiality.' },
+  { icon: '◐', title: 'Tax Advisory', desc: 'Strategic tax planning that preserves capital and maximises efficiency.' },
+  { icon: '⬡', title: 'Legal Services', desc: 'Expert counsel across corporate law, contracts, and regulatory compliance.' },
+  { icon: '◧', title: 'Reporting', desc: 'Bespoke financial and ESG reporting aligned with global standards.' },
+  { icon: '◫', title: 'Audit', desc: 'Independent assurance services that elevate trust and transparency.' },
+];
+
+const stats = [
+  { value: '15+', label: 'Years of Excellence' },
+  { value: '240+', label: 'Global Clients' },
+  { value: '$4B+', label: 'Capital Guided' },
+  { value: '12', label: 'Key Industries' },
+];
+
+const testimonial = {
+  quote: 'The Editorial Architect redefined how we approach financial strategy. Their counsel is precise, discreet, and transformational.',
+  name: 'Alexander Osei',
+  title: 'CEO, Meridian Capital Group',
+};
+
+const trustedBy = ['NEXUS', 'EQUITY', 'VANTAGE', 'MERIDIAN', 'HORIZON'];
+
+const pillars = [
+  { icon: '◈', label: 'Absolute Clarity' },
+  { icon: '◉', label: 'Rigour & Precision' },
+  { icon: '◐', label: 'Discreet Stewardship' },
+  { icon: '⬡', label: 'Intellectual Heritage' },
+];
 
 export default function Home() {
   return (
-    <div>
-      {/* Hero */}
-      <section className="section-padding bg-[var(--bg-color)]">
-        <div className="container grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <span className="inline-block text-[#c2a674] font-bold text-xs uppercase tracking-[0.3em] mb-6">Elevated Vision</span>
-            <h1 className="text-5xl md:text-7xl font-serif text-[#06132D] leading-[1.1] mb-6">
-              Architecting <br/>
-              <span className="italic font-light opacity-90 text-[#c2a674]">Clarity</span>
+    <div className="home">
+      {/* ─── Hero ─────────────────────────────────────────────── */}
+      <section className="hero">
+        <div className="hero__bg">
+          <img
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&auto=format&fit=crop&q=80"
+            alt="Elegant corporate office interior"
+            className="hero__img"
+          />
+          <div className="hero__overlay" />
+        </div>
+        <div className="container hero__content">
+          <div className="hero__left">
+            <span className="eyebrow">Strategic Guidance</span>
+            <h1 className="hero__headline">
+              Architecting Clarity in a <em className="italic-gold">Complex</em> World
             </h1>
-            <p className="text-lg text-gray-500 mb-10 max-w-md">
-              We curate high-fidelity business advisory and accounting frameworks for global enterprises, ensuring sophisticated growth and uncompromising compliance.
+            <p className="hero__desc">
+              Elite advisory services for private clients, family offices, and institutional leaders seeking absolute precision in finance, law, and strategy.
             </p>
-            <div className="flex gap-4">
-              <Link to="/contact" className="btn-primary">Get Started</Link>
-              <Link to="/services" className="btn-secondary">Explore Services</Link>
+            <div className="hero__actions">
+              <Link to="/contact" className="btn btn-gold">Book a Consultation</Link>
+              <Link to="/services" className="btn btn-outline-white">Our Services</Link>
             </div>
-          </div>
-          <div className="relative">
-            <div className="aspect-[3/4] overflow-hidden rounded-sm shadow-xl border-t border-[#06132D]/10">
-              <img src={heroImg} alt="Strategic Architecture Hero" className="w-full h-full object-cover grayscale opacity-90 transition hover:grayscale-0 hover:opacity-100 duration-1000" />
-            </div>
-            <div className="absolute -bottom-8 -left-8 bg-white p-8 shadow-2xl w-64 border-l-2 border-[#c2a674]">
-              <div className="text-5xl font-serif text-[#06132D] mb-1">20+</div>
-              <div className="text-xs font-bold uppercase tracking-[0.15em] text-gray-400">Years Curating Value</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Partners */}
-      <section className="py-16 border-y border-[#06132D]/5 text-center bg-white">
-        <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold mb-10">Trusted by industry leaders</p>
-        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 grayscale">
-          <span className="text-2xl font-serif font-black tracking-widest text-[#06132D]">VOGUE</span>
-          <span className="text-2xl font-serif font-black tracking-widest text-[#06132D]">SOTHEBY'S</span>
-          <span className="text-2xl font-serif font-black tracking-widest text-[#06132D]">GOLDMAN</span>
-          <span className="text-2xl font-serif font-black tracking-widest text-[#06132D]">CONDÉ NAST</span>
-        </div>
-      </section>
-
-      {/* Approach Summary */}
-      <section className="section-padding bg-[var(--bg-color)]">
-        <div className="container grid lg:grid-cols-2 gap-20 items-center">
-            <div className="relative aspect-square">
-               <img src={meetingImg} alt="Curatorial Process" className="w-full h-full object-cover grayscale contrast-125" />
-               <div className="absolute inset-0 border border-[#06132D]/10 translate-x-4 translate-y-4"></div>
-            </div>
-            <div>
-              <span className="text-[#c2a674] font-bold text-xs uppercase tracking-widest">Our Methodology</span>
-              <h2 className="font-serif text-4xl md:text-5xl text-[#06132D] my-8">The Digital Curator Approach</h2>
-              <div className="space-y-10">
-                {[
-                  { title: 'Expertise', desc: 'Decades of synthesis from senior advisors who have navigated multiple market cycles.' },
-                  { title: 'Compliance', desc: 'Proactive regulatory alignment that mitigates risk before it impacts your bottom line.' },
-                  { title: 'Tailored', desc: 'Bespoke architectural frameworks built specifically for your business goals.' },
-                ].map((item, i) => (
-                  <div key={i} className="border-l border-[#c2a674] pl-6">
-                      <h4 className="font-serif text-2xl text-[#06132D] mb-2">{item.title}</h4>
-                      <p className="text-gray-500">{item.desc}</p>
-                  </div>
-                ))}
+            <div className="hero__stat-badge">
+              <div className="hero__stat-badge-inner">
+                <strong>$4B+</strong>
+                <span>Capital Guided Globally</span>
               </div>
             </div>
+          </div>
         </div>
       </section>
-      
-      {/* Testimonial */}
-      <section className="section-padding bg-white text-center">
-         <div className="container max-w-4xl">
-            <div className="text-6xl text-[#c2a674] opacity-40 font-serif mb-6">"</div>
-            <h3 className="font-serif text-2xl md:text-4xl text-[#06132D] italic font-light mb-12 leading-relaxed">
-              The level of strategic synthesis provided is unparalleled. They didn't just give us data; they gave us a curatorial roadmap that successfully guided our global growth.
-            </h3>
-            <div>
-              <div className="font-bold text-[#06132D] uppercase tracking-widest mb-1 text-sm">Helena Vance</div>
-              <div className="text-gray-400 text-xs uppercase tracking-[0.2em]">Managing Director, Nexus Equity</div>
-            </div>
-         </div>
+
+      {/* ─── Trusted By ───────────────────────────────────────── */}
+      <section className="trusted section-pad-sm">
+        <div className="container">
+          <p className="trusted__label">Trusted By</p>
+          <div className="trusted__row">
+            {trustedBy.map(name => (
+              <span key={name} className="trusted__name">{name}</span>
+            ))}
+          </div>
+        </div>
       </section>
 
-      {/* CTA Bottom */}
-      <section className="section-padding bg-[#06132D] text-center text-white">
-        <div className="container max-w-4xl border border-white/10 p-16 md:p-24 bg-white/5 rounded-sm relative overflow-hidden">
-          <h2 className="font-serif text-4xl md:text-5xl mb-6 text-white leading-tight">Ready to curate your next strategy?</h2>
-          <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto tracking-wide">Connect with our senior advisory team to articulate your vision and architect your structural advantage.</p>
-          <Link to="/contact" className="bg-[#c2a674] text-[#06132D] px-8 py-4 font-bold uppercase tracking-widest text-xs hover:bg-[#b0966a] transition-colors inline-block">
-            Schedule a Consultation
-          </Link>
+      {/* ─── Services Grid ────────────────────────────────────── */}
+      <section className="section-pad" id="services-overview">
+        <div className="container">
+          <div className="home-section-header">
+            <span className="eyebrow">What We Do</span>
+            <h2>A Suite of Expert Services</h2>
+            <div className="gold-bar" />
+            <p className="home-section-sub">
+              From foundational accounting to sophisticated tax strategy and legal counsel — every service is delivered with absolute discretion.
+            </p>
+          </div>
+          <div className="services-grid">
+            {services.map(({ icon, title, desc }) => (
+              <div key={title} className="service-card">
+                <span className="service-card__icon">{icon}</span>
+                <h4 className="service-card__title">{title}</h4>
+                <p className="service-card__desc">{desc}</p>
+                <Link to="/services" className="service-card__link">
+                  Learn more <span>→</span>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Stats Row ────────────────────────────────────────── */}
+      <section className="stats-band">
+        <div className="container stats-band__grid">
+          {stats.map(({ value, label }) => (
+            <div key={label} className="stat-item">
+              <strong className="stat-item__value">{value}</strong>
+              <span className="stat-item__label">{label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ─── Digital Curator ──────────────────────────────────── */}
+      <section className="section-pad curator">
+        <div className="container curator__grid">
+          <div className="curator__text">
+            <span className="eyebrow">The Digital Curator</span>
+            <h2>Intelligence That Drives Decision</h2>
+            <div className="gold-bar" />
+            <p>
+              Our advisory methodology blends institutional rigour with bespoke insight. Every engagement is tailored to reveal the clarity hidden within complexity.
+            </p>
+            <ul className="curator__bullets">
+              {[
+                'Deep-dive financial analysis and scenario modelling',
+                'Regulatory intelligence across 12+ jurisdictions',
+                'Board-level strategy and capital allocation advice',
+                'Proprietary briefings and confidential research',
+              ].map(pt => (
+                <li key={pt} className="curator__bullet">
+                  <span className="curator__dot">◆</span>
+                  {pt}
+                </li>
+              ))}
+            </ul>
+            <Link to="/about" className="btn btn-navy">
+              Discover Our Approach
+            </Link>
+          </div>
+          <div className="curator__image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=900&auto=format&fit=crop&q=80"
+              alt="Professional working at desk"
+              className="curator__image"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Pillars ──────────────────────────────────────────── */}
+      <section className="pillars section-pad-sm">
+        <div className="container">
+          <div className="home-section-header home-section-header--center">
+            <span className="eyebrow">Our Foundation</span>
+            <h2>Pillars of Excellence</h2>
+            <div className="gold-bar gold-bar-center" />
+          </div>
+          <div className="pillars__grid">
+            {pillars.map(({ icon, label }) => (
+              <div key={label} className="pillar-item">
+                <span className="pillar-item__icon">{icon}</span>
+                <span className="pillar-item__label">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Testimonial ──────────────────────────────────────── */}
+      <section className="testimonial section-pad">
+        <div className="container">
+          <div className="testimonial__card">
+            <span className="testimonial__quote-mark">"</span>
+            <blockquote className="testimonial__text">{testimonial.quote}</blockquote>
+            <div className="testimonial__divider" />
+            <p className="testimonial__name">{testimonial.name}</p>
+            <p className="testimonial__title">{testimonial.title}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CTA Banner ───────────────────────────────────────── */}
+      <section className="cta-banner">
+        <div className="container">
+          <span className="eyebrow">Take The Next Step</span>
+          <h2>Ready to Grow Your Business?</h2>
+          <p>Speak with one of our advisors and discover what strategic clarity can unlock for your organisation.</p>
+          <div className="btn-group">
+            <Link to="/contact" className="btn btn-gold">Schedule a Free Consultation</Link>
+            <Link to="/pricing" className="btn btn-outline-white">View Pricing</Link>
+          </div>
         </div>
       </section>
     </div>

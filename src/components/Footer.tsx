@@ -1,53 +1,114 @@
 import { Link } from 'react-router-dom';
+import './Footer.css';
 
-const Footer = () => {
+const partners = ['VOGUE', "SOTHEBY'S", 'GOLDMAN', 'LEXUS', 'ROLEX'];
+
+const companyLinks = [
+  { to: '/', label: 'Home' },
+  { to: '/services', label: 'Services' },
+  { to: '/pricing', label: 'Pricing' },
+  { to: '/about', label: 'About' },
+  { to: '/contact', label: 'Contact' },
+];
+
+const legalLinks = [
+  { label: 'Privacy Policy' },
+  { label: 'Terms of Service' },
+  { label: 'Cookie Policy' },
+  { label: 'Disclaimer' },
+];
+
+export default function Footer() {
   return (
-    <footer className="bg-[#06132D] text-white pt-20 pb-10">
-      <div className="container grid md:grid-cols-4 gap-12 mb-16">
-        <div className="md:col-span-1">
-          <Link to="/" className="text-2xl font-serif font-bold mb-6 inline-block">
-            The Editorial Architect
-          </Link>
-          <p className="text-sm text-gray-400 mt-4 leading-relaxed tracking-wide">
-            Strategic financial intelligence and curatorial business advisory for modern, ambitious enterprises.
-          </p>
-        </div>
-        
-        <div>
-          <h4 className="text-xs uppercase tracking-[0.1em] text-gray-400 font-bold mb-6">Navigation</h4>
-          <ul className="space-y-3 text-sm tracking-wide">
-            <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
-            <li><Link to="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
-            <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
-            <li><Link to="/insights" className="hover:text-white transition-colors">Insights</Link></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h4 className="text-xs uppercase tracking-[0.1em] text-gray-400 font-bold mb-6">Legal</h4>
-          <ul className="space-y-3 text-sm tracking-wide">
-            <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-            <li><Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h4 className="text-xs uppercase tracking-[0.1em] text-gray-400 font-bold mb-6">Newsletter</h4>
-          <p className="text-sm text-gray-400 mb-4 tracking-wide">Curated intelligence delivered directly to your inbox.</p>
-          <form className="flex mt-6">
-            <input type="email" placeholder="Email Address" className="border-none rounded-sm rounded-r-none px-4 py-3 flex-grow text-gray-900 bg-white/90 focus:ring-0 focus:outline-none" />
-            <button type="submit" className="bg-[#c2a674] px-4 py-3 text-[#06132D] font-bold rounded-r-sm text-xs tracking-widest uppercase hover:bg-[#b0966a] transition-colors">
-              Subscribe
-            </button>
-          </form>
+    <footer className="footer">
+      {/* Partners Band */}
+      <div className="footer__partners">
+        <div className="container">
+          <p className="footer__partners-label">Global Partnerships</p>
+          <div className="footer__partners-row">
+            {partners.map(p => (
+              <span key={p} className="footer__partner">{p}</span>
+            ))}
+          </div>
         </div>
       </div>
-      
-      <div className="container border-t border-white/10 pt-8 text-center text-xs text-gray-500 uppercase tracking-widest">
-        &copy; {new Date().getFullYear()} The Editorial Architect. All rights reserved.
+
+      {/* Main Footer */}
+      <div className="footer__main">
+        <div className="container footer__grid">
+          {/* Brand */}
+          <div className="footer__brand">
+            <Link to="/" className="footer__logo">
+              <span className="footer__logo-icon">✦</span>
+              The Editorial Architect
+            </Link>
+            <p className="footer__brand-desc">
+              Architecting clarity for institutional and private clients navigating
+              complex financial, legal, and strategic landscapes.
+            </p>
+            <div className="footer__socials">
+              <a href="#" aria-label="LinkedIn" className="footer__social">in</a>
+              <a href="#" aria-label="Twitter" className="footer__social">𝕏</a>
+              <a href="#" aria-label="Instagram" className="footer__social">IG</a>
+            </div>
+          </div>
+
+          {/* Company */}
+          <div className="footer__col">
+            <h4 className="footer__col-title">Company</h4>
+            <ul className="footer__col-links">
+              {companyLinks.map(({ to, label }) => (
+                <li key={to}>
+                  <Link to={to} className="footer__col-link">{label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div className="footer__col">
+            <h4 className="footer__col-title">Legal</h4>
+            <ul className="footer__col-links">
+              {legalLinks.map(({ label }) => (
+                <li key={label}>
+                  <a href="#" className="footer__col-link">{label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Connect */}
+          <div className="footer__col">
+            <h4 className="footer__col-title">Connect</h4>
+            <ul className="footer__col-links footer__connect">
+              <li>
+                <span className="footer__connect-icon">✉</span>
+                <a href="mailto:hello@editorialarchitect.com" className="footer__col-link">
+                  hello@editorialarchitect.com
+                </a>
+              </li>
+              <li>
+                <span className="footer__connect-icon">✆</span>
+                <a href="tel:+442071234567" className="footer__col-link">
+                  +44 207 123 4567
+                </a>
+              </li>
+              <li>
+                <span className="footer__connect-icon">◎</span>
+                <span className="footer__col-link">One Canada Square, London</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="footer__bottom">
+          <div className="container footer__bottom-inner">
+            <p>© {new Date().getFullYear()} The Editorial Architect. All rights reserved.</p>
+            <p className="footer__bottom-tag">Precision. Discretion. Excellence.</p>
+          </div>
+        </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

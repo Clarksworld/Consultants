@@ -1,92 +1,85 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import './Navbar.css';
 
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const links = [
+  { to: '/', label: 'Home' },
+  { to: '/services', label: 'Services' },
+  { to: '/pricing', label: 'Pricing' },
+  { to: '/about', label: 'About' },
+  { to: '/contact', label: 'Contact' },
+];
+
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
-    { name: 'Pricing', path: '/pricing' },
-    { name: 'About', path: '/about' },
-    { name: 'Insights', path: '/insights' },
-    { name: 'Contact', path: '/contact' },
-  ];
-
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-4 shadow-sm' : 'py-6 bg-transparent'}`}>
-      <div className="container flex justify-between items-center">
+    <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+      <div className="container navbar__inner">
         {/* Logo */}
-        <Link to="/" className="text-xl md:text-2xl font-serif font-bold tracking-tight text-primary-navy whitespace-nowrap">
-          The Editorial Architect
+        <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
+          <span className="navbar__logo-icon">✦</span>
+          <span className="navbar__logo-text">The Editorial Architect</span>
         </Link>
-        
-        {/* Desktop Links */}
-        <div className="hidden lg:flex items-center space-x-8 text-xs font-medium uppercase tracking-[0.15em] text-text-secondary">
-          {navLinks.map((link) => (
-            <NavLink 
-              key={link.name} 
-              to={link.path}
-              className={({ isActive }) => 
-                `hover:text-primary-navy transition-colors ${isActive ? 'text-primary-navy border-b border-primary-navy pb-1' : ''}`
+
+        {/* Desktop Nav */}
+        <nav className="navbar__links" aria-label="Primary navigation">
+          {links.map(({ to, label }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={to === '/'}
+              className={({ isActive }) =>
+                `navbar__link ${isActive ? 'navbar__link--active' : ''}`
               }
             >
-              {link.name}
+              {label}
             </NavLink>
           ))}
-        </div>
+        </nav>
 
-        {/* CTA Button */}
-        <div className="flex items-center space-x-4">
-          <Link to="/contact" className="hidden sm:inline-block btn-primary shadow-lg hover:shadow-xl">
-            GET STARTED
-          </Link>
-          <button className="lg:hidden text-primary-navy" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+        {/* CTA */}
+        <Link to="/contact" className="btn btn-navy navbar__cta">
+          Get Started
+        </Link>
+
+        {/* Burger */}
+        <button
+          className={`navbar__burger ${menuOpen ? 'navbar__burger--open' : ''}`}
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+        >
+          <span /><span /><span />
+        </button>
       </div>
-      
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden absolute top-full left-0 right-0 bg-surface border-b border-border shadow-xl overflow-hidden"
-          >
-            <div className="flex flex-col py-6 px-8 space-y-6 text-sm uppercase tracking-widest font-medium text-text-secondary">
-              {navLinks.map((link) => (
-                <NavLink 
-                  key={link.name} 
-                  to={link.path}
-                  className={({ isActive }) => 
-                    `block hover:text-primary-navy ${isActive ? 'text-primary-navy font-bold' : ''}`
-                  }
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </NavLink>
-              ))}
-              <Link to="/contact" className="btn-primary w-full text-center mt-4">
-                GET STARTED
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
-  );
-};
 
-export default Navbar;
+      {/* Mobile Drawer */}
+      <div className={`navbar__drawer ${menuOpen ? 'navbar__drawer--open' : ''}`}>
+        {links.map(({ to, label }) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={to === '/'}
+            className={({ isActive }) =>
+              `navbar__drawer-link ${isActive ? 'navbar__drawer-link--active' : ''}`
+            }
+            onClick={() => setMenuOpen(false)}
+          >
+            {label}
+          </NavLink>
+        ))}
+        <Link to="/contact" className="btn btn-navy" onClick={() => setMenuOpen(false)}>
+          Get Started
+        </Link>
+      </div>
+    </header>
+  );
+}

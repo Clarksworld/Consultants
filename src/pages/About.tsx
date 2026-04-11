@@ -1,78 +1,132 @@
-import meetingImg from '../assets/meeting.png';
+import { Link } from 'react-router-dom';
+import './About.css';
+
+const stats = [
+  { value: '15+', label: 'Years of Excellence' },
+  { value: '240+', label: 'Global Clients' },
+  { value: '12', label: 'Key Industries' },
+  { value: '$4B+', label: 'Capital Guided' },
+];
+
+const pillars = [
+  {
+    icon: '◈',
+    title: 'Absolute Clarity',
+    desc: 'We cut through noise to present the truth of every situation with lucid, actionable precision.',
+  },
+  {
+    icon: '◉',
+    title: 'Rigour & Precision',
+    desc: 'Every analysis, recommendation, and document is reviewed to the highest standard before it reaches your desk.',
+  },
+  {
+    icon: '◐',
+    title: 'Discreet Stewardship',
+    desc: 'Your affairs are handled with total confidentiality. Trust is our most valuable currency.',
+  },
+  {
+    icon: '⬡',
+    title: 'Intellectual Heritage',
+    desc: 'Decades of accumulated expertise across finance, law, and strategy form the bedrock of every engagement.',
+  },
+  {
+    icon: '◧',
+    title: 'Actionable Wisdom',
+    desc: 'We do not deliver reports — we deliver decisions. Every insight is translated into clear next steps.',
+  },
+];
 
 export default function About() {
   return (
-    <div className="bg-[var(--bg-color)] min-h-screen">
-      <section className="section-padding bg-white relative overflow-hidden">
-        <div className="container relative z-10 text-center max-w-3xl mx-auto">
-          <span className="text-[#c2a674] font-bold text-xs uppercase tracking-[0.15em] mb-4 block">Firm Profile</span>
-          <h1 className="text-4xl md:text-6xl font-serif text-[#06132D] leading-[1.2] mb-12">
-            Architecting clarity in a complex world.
+    <div className="about-page">
+      {/* Page Header */}
+      <section className="page-header">
+        <div className="container">
+          <span className="eyebrow">Bio / Firm</span>
+          <h1>
+            Architecting clarity in a <em className="italic-gold">complex</em> world.
           </h1>
+          <p>
+            Founded on a conviction that the world's most ambitious individuals and institutions deserve advisors of the highest calibre.
+          </p>
         </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[1px] bg-[#06132D]/5"></div>
       </section>
 
-      <section className="border-t border-[#06132D]/10 bg-[var(--bg-color)] py-12">
-        <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-[#06132D]/10">
-            <div>
-              <div className="text-4xl font-serif text-[#06132D] mb-2">150+</div>
-              <div className="text-xs uppercase tracking-widest text-gray-500 font-bold">Global Clients</div>
+      {/* Stats Row */}
+      <section className="stats-band">
+        <div className="container stats-band__grid">
+          {stats.map(({ value, label }) => (
+            <div key={label} className="stat-item">
+              <strong className="stat-item__value">{value}</strong>
+              <span className="stat-item__label">{label}</span>
             </div>
-            <div>
-              <div className="text-4xl font-serif text-[#06132D] mb-2">$4B</div>
-              <div className="text-xs uppercase tracking-widest text-gray-500 font-bold">Assets Advised</div>
-            </div>
-            <div>
-              <div className="text-4xl font-serif text-[#06132D] mb-2">24</div>
-              <div className="text-xs uppercase tracking-widest text-gray-500 font-bold">Countries</div>
-            </div>
-            <div>
-              <div className="text-4xl font-serif text-[#06132D] mb-2">99%</div>
-              <div className="text-xs uppercase tracking-widest text-gray-500 font-bold">Retention Rate</div>
-            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Founder Profile */}
+      <section className="section-pad founder">
+        <div className="container founder__grid">
+          <div className="founder__image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=700&auto=format&fit=crop&q=80&sat=-100"
+              alt="Julian Vane, Founder"
+              className="founder__image"
+            />
+          </div>
+          <div className="founder__text">
+            <span className="eyebrow">The Founder</span>
+            <h2 className="founder__name">Julian Vane</h2>
+            <p className="founder__role">
+              "Strategy without clarity is noise. We provide the silence in which great decisions are made."
+            </p>
+            <div className="gold-bar" />
+            <p>
+              Julian built The Editorial Architect after two decades working at the intersection of private equity, international tax law, and family office advisory. His clients span sovereign wealth funds, FTSE 100 boards, and high-net-worth private individuals across five continents.
+            </p>
+            <p style={{ marginTop: '1rem' }}>
+              His approach is grounded in a simple belief: the best advice is that which the client can immediately act upon. Every engagement begins with listening, proceeds with rigorous analysis, and concludes with a precise, implementable strategy.
+            </p>
+            <a href="#pillars" className="founder__manifesto-link">
+              Read The Full Manifesto <span>→</span>
+            </a>
           </div>
         </div>
       </section>
 
-      <section className="section-padding">
-        <div className="container grid lg:grid-cols-2 gap-20 items-center">
-            <div>
-                <span className="text-[#c2a674] font-bold text-xs uppercase tracking-widest">Leadership</span>
-                <h2 className="font-serif text-4xl text-[#06132D] my-6">Julian Vane</h2>
-                <div className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold mb-8">Principal Architect</div>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  With over two decades spent synthesizing complex market structures into streamlined operations, Julian founded The Editorial Architect to bridge the gap between rigorous financial modeling and inspired business design.
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  His curatorial approach strips away unessential noise, allowing enterprise leadership to operate with absolute clarity and uncompromising ambition.
-                </p>
-            </div>
-            <div className="aspect-[3/4] relative">
-              <img src={meetingImg} alt="Julian Vane" className="w-full h-full object-cover grayscale opacity-90 sepia-[.2]" />
-               <div className="absolute top-0 right-0 w-32 h-32 border-t border-r border-[#c2a674] translate-x-4 -translate-y-4"></div>
-            </div>
+      {/* Pillars of Excellence */}
+      <section id="pillars" className="section-pad pillars-section" style={{ background: '#f0ede7' }}>
+        <div className="container">
+          <div className="home-section-header home-section-header--center">
+            <span className="eyebrow">Our Philosophy</span>
+            <h2>Pillars of Excellence</h2>
+            <div className="gold-bar gold-bar-center" />
+            <p style={{ maxWidth: '560px', margin: '0 auto' }}>
+              Five enduring principles that guide every engagement, every recommendation, and every relationship.
+            </p>
+          </div>
+          <div className="pillars-section__grid" style={{ marginTop: '3.5rem' }}>
+            {pillars.map(({ icon, title, desc }) => (
+              <div key={title} className="pillar-card">
+                <span className="pillar-card__icon">{icon}</span>
+                <h4 className="pillar-card__title">{title}</h4>
+                <p className="pillar-card__desc">{desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="section-padding bg-[#06132D] text-white">
-        <div className="container text-center max-w-4xl mx-auto">
-           <h2 className="font-serif text-4xl mb-16">Pillars of Excellence</h2>
-           <div className="grid md:grid-cols-3 gap-12 text-left">
-              <div>
-                 <div className="text-[#c2a674] text-xl mb-4 font-serif">01. Synthesis</div>
-                 <p className="text-gray-400 text-sm">We distil complexity down to its most elegant, functional essence.</p>
-              </div>
-              <div>
-                 <div className="text-[#c2a674] text-xl mb-4 font-serif">02. Integrity</div>
-                 <p className="text-gray-400 text-sm">Structural truth in reporting, advising, and corporate action.</p>
-              </div>
-              <div>
-                 <div className="text-[#c2a674] text-xl mb-4 font-serif">03. Foresight</div>
-                 <p className="text-gray-400 text-sm">Anticipating regulatory and market shifts before they require reaction.</p>
-              </div>
-           </div>
+      {/* CTA Banner */}
+      <section className="cta-banner">
+        <div className="container">
+          <span className="eyebrow">Begin Your Engagement</span>
+          <h2>Ready to Curate Your Next Strategy?</h2>
+          <p>Speak with a senior advisor today and discover what's possible when clarity leads every decision.</p>
+          <div className="btn-group">
+            <Link to="/contact" className="btn btn-gold">Book a Consultation</Link>
+            <Link to="/services" className="btn btn-outline-white">Explore Services</Link>
+          </div>
         </div>
       </section>
     </div>
